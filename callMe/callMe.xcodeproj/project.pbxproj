@@ -36,6 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E90EA931E78A14A00B23930 /* ICalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ICalendar.h; path = CalendarFramework/Protocols/ICalendar.h; sourceTree = "<group>"; };
+		2E90EA951E78A21A00B23930 /* ICalServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ICalServices.h; path = CalendarFramework/Services/ICalServices.h; sourceTree = "<group>"; };
+		2E90EA981E78A3C600B23930 /* IEventKitService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IEventKitService.h; path = EventKitFrameWork/Services/IEventKitService.h; sourceTree = "<group>"; };
+		2E90EA9B1E78A57900B23930 /* ICoreLocationServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ICoreLocationServices.h; path = CoreLocationFramework/Services/ICoreLocationServices.h; sourceTree = "<group>"; };
+		2E90EA9D1E78A60400B23930 /* IErrorProtocol..h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IErrorProtocol..h; path = ErrorFrameWork/IErrorProtocol..h; sourceTree = "<group>"; };
+		2E90EAA31E78A77B00B23930 /* IErrorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IErrorProtocol.h; path = ErrorFrameWork/Protocols/IErrorProtocol.h; sourceTree = "<group>"; };
 		2ED130911E772C8C00CAB68F /* callMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = callMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED130951E772C8C00CAB68F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2ED130971E772C8C00CAB68F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -80,6 +86,118 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E90EA8E1E78A03400B23930 /* CoreLocationFramework */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EA9A1E78A53700B23930 /* Protocols */,
+				2E90EA991E78A52900B23930 /* Services */,
+			);
+			name = CoreLocationFramework;
+			sourceTree = "<group>";
+		};
+		2E90EA8F1E78A09100B23930 /* EventKitFramework */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EA971E78A39300B23930 /* Services */,
+				2E90EA961E78A38C00B23930 /* Protocols */,
+			);
+			name = EventKitFramework;
+			sourceTree = "<group>";
+		};
+		2E90EA901E78A0AB00B23930 /* ProcuraFramework */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ProcuraFramework;
+			sourceTree = "<group>";
+		};
+		2E90EA911E78A0BB00B23930 /* CalendarFramework */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EA941E78A1F600B23930 /* Services */,
+				2E90EA921E78A12100B23930 /* Protocols */,
+			);
+			name = CalendarFramework;
+			sourceTree = "<group>";
+		};
+		2E90EA921E78A12100B23930 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EA931E78A14A00B23930 /* ICalendar.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		2E90EA941E78A1F600B23930 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EA951E78A21A00B23930 /* ICalServices.h */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		2E90EA961E78A38C00B23930 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		2E90EA971E78A39300B23930 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EA981E78A3C600B23930 /* IEventKitService.h */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		2E90EA991E78A52900B23930 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EA9B1E78A57900B23930 /* ICoreLocationServices.h */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		2E90EA9A1E78A53700B23930 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		2E90EA9C1E78A5D800B23930 /* ErroFramework */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EA9D1E78A60400B23930 /* IErrorProtocol..h */,
+			);
+			name = ErroFramework;
+			sourceTree = "<group>";
+		};
+		2E90EAA01E78A73600B23930 /* ErrorFrameWork */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EAA21E78A74C00B23930 /* Protocols */,
+				2E90EAA11E78A74400B23930 /* Services */,
+			);
+			name = ErrorFrameWork;
+			sourceTree = "<group>";
+		};
+		2E90EAA11E78A74400B23930 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		2E90EAA21E78A74C00B23930 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EAA31E78A77B00B23930 /* IErrorProtocol.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		2ED130881E772C8C00CAB68F = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +221,12 @@
 		2ED130931E772C8C00CAB68F /* callMe */ = {
 			isa = PBXGroup;
 			children = (
+				2E90EAA01E78A73600B23930 /* ErrorFrameWork */,
+				2E90EA911E78A0BB00B23930 /* CalendarFramework */,
+				2E90EA901E78A0AB00B23930 /* ProcuraFramework */,
+				2E90EA8F1E78A09100B23930 /* EventKitFramework */,
+				2E90EA8E1E78A03400B23930 /* CoreLocationFramework */,
+				2ED130CA1E772CD000CAB68F /* Shared */,
 				2ED130971E772C8C00CAB68F /* AppDelegate.h */,
 				2ED130981E772C8C00CAB68F /* AppDelegate.m */,
 				2ED1309A1E772C8C00CAB68F /* ViewController.h */,
@@ -141,6 +265,14 @@
 				2ED130BE1E772C8C00CAB68F /* Info.plist */,
 			);
 			path = callMeUITests;
+			sourceTree = "<group>";
+		};
+		2ED130CA1E772CD000CAB68F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2E90EA9C1E78A5D800B23930 /* ErroFramework */,
+			);
+			name = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -520,6 +652,7 @@
 				2ED130C31E772C8C00CAB68F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2ED130C41E772C8C00CAB68F /* Build configuration list for PBXNativeTarget "callMeTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +661,7 @@
 				2ED130C61E772C8C00CAB68F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2ED130C71E772C8C00CAB68F /* Build configuration list for PBXNativeTarget "callMeUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +670,7 @@
 				2ED130C91E772C8C00CAB68F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
