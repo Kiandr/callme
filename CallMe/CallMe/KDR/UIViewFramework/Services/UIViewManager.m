@@ -13,74 +13,9 @@
 
 @implementation UIViewManager : NSObject
 
--(void) buildAViewAndLoadIntoMainViewParameteized:(ViewController *) mainView {
-
-    // Refference: http://stackoverflow.com/questions/30728062/add-views-in-uistackview-programmatically
-    //View 1
-    UIView *view1 = [[UIView alloc] init];
-    view1.backgroundColor = [UIColor blueColor];
-    [view1.heightAnchor constraintEqualToConstant:100].active = true;
-    [view1.widthAnchor constraintEqualToConstant:200].active = true;
-    
-    
-    
-    //Stack View
-    UIStackView *stackView = [[UIStackView alloc] init];
-    
-    stackView.axis = UILayoutConstraintAxisVertical;
-    stackView.distribution = UIStackViewDistributionEqualSpacing;
-    stackView.alignment = UIStackViewAlignmentCenter;
-    stackView.spacing = 10;
-    
-    // I dont know what is this for?
-    [stackView addArrangedSubview:view1];
-    stackView.translatesAutoresizingMaskIntoConstraints = false;
-    
-    
-    // Add new View into the main Contorller view
-    [mainView.view addSubview:stackView];
-    
-    //Layout for Stack View
-    [stackView.centerXAnchor constraintEqualToAnchor:mainView.view.centerXAnchor].active = true;
-    [stackView.centerYAnchor constraintEqualToAnchor:mainView.view.centerYAnchor].active = true;
-    
-
-}
-
--(UIStackView*) buildAViewAndReturnViewToBeLoadedAsWished{
-    
-    //View 1
-    UIView *view1 = [[UIView alloc] init];
-    view1.backgroundColor = [UIColor blueColor];
-    [view1.heightAnchor constraintEqualToConstant:100].active = true;
-    [view1.widthAnchor constraintEqualToConstant:200].active = true;
-    
-    
-    
-    //Stack View
-    UIStackView *stackView = [[UIStackView alloc] init];
-    
-    stackView.axis = UILayoutConstraintAxisVertical;
-    stackView.distribution = UIStackViewDistributionEqualSpacing;
-    stackView.alignment = UIStackViewAlignmentCenter;
-    stackView.spacing = 10;
-    
-    
-    [stackView addArrangedSubview:view1];
-    stackView.translatesAutoresizingMaskIntoConstraints = false;
-    
-    return stackView;
-
-}
 
 -(void) AddDataPickerToThisView:(ViewController*)mainViewController{
-    UIViewManager *
-    
-    
-    _view = [[UIViewManager alloc] init];
-//    [_view delegate] = NULL;
-//    [self.lib startUpdatingCount];
-    
+    UIViewManager * view = [[UIViewManager alloc] init];
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.frame = CGRectMake(0, 50, 300, 162);
     datePicker.bounds = CGRectMake(0, 50, 300, 162);
@@ -96,39 +31,33 @@
     // Refference: http://stackoverflow.com/questions/30728062/add-views-in-uistackview-programmatically
     //View 1
     UIView *view1 = [[UIView alloc] init];
-    view1.backgroundColor = [UIColor blueColor];
-    [view1.heightAnchor constraintEqualToConstant:100].active = true;
-    [view1.widthAnchor constraintEqualToConstant:200].active = true;
-    
-    
-    
-    //Stack View
-    UIStackView *stackView = [[UIStackView alloc] init];
-    
-    stackView.axis = UILayoutConstraintAxisVertical;
-    stackView.distribution = UIStackViewDistributionEqualSpacing;
-    stackView.alignment = UIStackViewAlignmentCenter;
-    stackView.spacing = 10;
-    
-    // I dont know what is this for?
-    [stackView addArrangedSubview:view1];
-    stackView.translatesAutoresizingMaskIntoConstraints = false;
-    
-    
-    // Add new View into the main Contorller view
-    [mainView.view addSubview:stackView];
-    
-    //Layout for Stack View
-    [stackView.centerXAnchor constraintEqualToAnchor:mainView.view.centerXAnchor].active = true;
-    [stackView.centerYAnchor constraintEqualToAnchor:mainView.view.centerYAnchor].active = true;
-    
-    // Build and deplou datePicker
-    [self AddDataPickerToThisView:mainView];
-    
-//    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
-//    [mainView.view addSubview:datePicker];
+    view1.backgroundColor = [UIColor colorWithRed:236.0f green:0.0f blue:139.0f alpha:1.0f];
+//    [view1.heightAnchor constraintEqualToConstant:100].active = true;
+//    [view1.widthAnchor constraintEqualToConstant:200].active = true;
+////
+    CGSize viewSize = mainView.view.frame.size;
+    CGPoint mainViewCoordinates = mainView.view.bounds.origin;
+    view1.frame = CGRectMake(mainViewCoordinates.x, mainViewCoordinates.y+([[UIApplication sharedApplication] statusBarFrame].size.height), mainView.view.frame.size.width, mainView.view.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height);
+//CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
+//    UIWindow *w =  [UIApplication sharedApplication].keyWindow;
+//    [mainView.navigationController.navigationBar addSubview:view1];
 
+    
+
+    
+
+    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+    // How to change to a date only mode : http://stackoverflow.com/questions/15119565/showing-a-particular-date-in-uidatepicker-in-uidatepickermodedate-on-the-iphone
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    // set sizeof screen 1/10 of mainSuperview
+    datePicker.frame = CGRectMake(mainViewCoordinates.x, mainViewCoordinates.y+([[UIApplication sharedApplication] statusBarFrame].size.height), mainView.view.frame.size.width, (mainView.view.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height)/10);;
+    [datePicker addTarget:self action:@selector(DatePickerCallBackFunction:) forControlEvents:UIControlEventValueChanged];
+    // Add date piker to the this view controller.
+    [view1 addSubview:datePicker];
+    
+    
+    // Load view to mainSuperview
+    [mainView.view addSubview:view1];
 }
-
 
 @end
