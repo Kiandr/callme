@@ -11,8 +11,9 @@
 
 
 @required
--(void) buildAViewAndLoadIntoMainViewParameteizedAndDatePicker:(ViewController *) mainView ;
-
+//-(void) buildAViewAndLoadIntoMainViewParameteizedAndDatePicker:(ViewController *) mainView ;
+//-(void) appDidLoadImage;
+//
 @optional
 
 
