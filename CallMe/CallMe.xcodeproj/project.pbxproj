@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E22584E1E81990B003ECEF8 /* UITableViewControllerCustimized.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E22584D1E81990B003ECEF8 /* UITableViewControllerCustimized.m */; };
 		2E93A92C1E7A2560009CF2E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E93A92B1E7A2560009CF2E1 /* main.m */; };
 		2E93A92F1E7A2560009CF2E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E93A92E1E7A2560009CF2E1 /* AppDelegate.m */; };
 		2E93A9321E7A2560009CF2E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E93A9311E7A2560009CF2E1 /* ViewController.m */; };
@@ -37,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E22584B1E819409003ECEF8 /* UIViewFrameOwekModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UIViewFrameOwekModel.h; path = KDR/UIViewFramework/Models/UIViewFrameOwekModel.h; sourceTree = "<group>"; };
+		2E22584C1E8198F7003ECEF8 /* UITableViewControllerCustimized.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UITableViewControllerCustimized.h; path = KDR/UIViewFramework/Services/UITableViewControllerCustimized.h; sourceTree = "<group>"; };
+		2E22584D1E81990B003ECEF8 /* UITableViewControllerCustimized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableViewControllerCustimized.m; path = KDR/UIViewFramework/Services/UITableViewControllerCustimized.m; sourceTree = "<group>"; };
 		2E93A9271E7A2560009CF2E1 /* CallMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E93A92B1E7A2560009CF2E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2E93A92D1E7A2560009CF2E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E2258491E819205003ECEF8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E22584B1E819409003ECEF8 /* UIViewFrameOwekModel.h */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		2E93A91E1E7A2560009CF2E1 = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +205,7 @@
 		2EAA32B11E7B3CCA00876DD5 /* UIViewFramework */ = {
 			isa = PBXGroup;
 			children = (
+				2E2258491E819205003ECEF8 /* Models */,
 				2EAA32BA1E7B3D9100876DD5 /* Services */,
 				2EAA32B91E7B3D8800876DD5 /* Protocols */,
 			);
@@ -226,6 +239,8 @@
 			children = (
 				2EAA32C01E7B3E1A00876DD5 /* UIViewManager.h */,
 				2EAA32BC1E7B3DA800876DD5 /* UIViewManager.m */,
+				2E22584C1E8198F7003ECEF8 /* UITableViewControllerCustimized.h */,
+				2E22584D1E81990B003ECEF8 /* UITableViewControllerCustimized.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -370,6 +385,7 @@
 				2EAA32BE1E7B3DA800876DD5 /* UIViewManager.m in Sources */,
 				2E93A9381E7A2560009CF2E1 /* CallMe.xcdatamodeld in Sources */,
 				2E93A92F1E7A2560009CF2E1 /* AppDelegate.m in Sources */,
+				2E22584E1E81990B003ECEF8 /* UITableViewControllerCustimized.m in Sources */,
 				2E93A92C1E7A2560009CF2E1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

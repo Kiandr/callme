@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@interface UIViewManager : NSObject 
+#import "UITableViewControllerCustimized.h"
+//#import "UIViewFrameOwekModel.h"
+
+@interface UIViewManager : NSObject
 @property(nonatomic,strong) UIButton* UItoDateButton;
 //@property(nonatomic,strong) UIDatePicker* DatePickerUiComponent;
 
@@ -18,14 +21,16 @@
 @implementation UIViewManager : NSObject  
 {
     UIDatePicker * DatePickerUiComponent;
-
-
+    UITableView  * UiTableView;
+    
+    
 }
 - (id) init
 {
     self = [super init];
     if (self) {
         // All initializations you need
+       
     }
     return self;
 }
@@ -34,8 +39,8 @@
  properly advocate functions to manage origins and framesize for heat member, 
  You need a datastructure as datePicker, Button with extened class that has setters
 */
--(UIView*) buildAViewAndLoadIntoMainViewParameteizedAndDatePicker {
-
+- (UIView*)  buildAViewAndLoadIntoMainViewParameteizedAndDatePicker {
+UIColor * NNDBrandColour = [UIColor colorWithRed:236.0f green:0.0f blue:139.0f alpha:1.0f];
    
     // Refference: http://stackoverflow.com/questions/30728062/add-views-in-uistackview-programmatically
     UIView *view1 = [[UIView alloc] init];
@@ -82,7 +87,9 @@
     
     
     [but addTarget:self action:@selector(event_button_click:) forControlEvents:UIControlEventTouchUpInside];
-    
+//    UImodel =[[UIViewFrameOwekModel alloc] init];
+//    int r = [UImodel getButtonFrameHeight];
+//    
     
     [but setExclusiveTouch:YES];
     but.frame =CGRectMake(datePicker.frame.origin.x, datePicker.frame.origin.y+ datePicker.frame.size.height, window.frame.size.width/*/4*/, (window.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height)/10);
@@ -91,18 +98,36 @@
     [but setTitle:@"set Today" forState:UIControlStateNormal];
     [but setExclusiveTouch:YES];
 //    but.backgroundColor=[UIColor redColor];
-    [but setBackgroundColor:[UIColor redColor]];
+    [but setBackgroundColor:NNDBrandColour];
     [but setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
     [but setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [view1 addSubview:but];
 //    _toDateButton = but;
+    
+//    UITableViewControllerCustimized *t = [[UITableViewControllerCustimized alloc]init];
+//    [t loadView:view1];
+
+    
+    
+    
+    
+    
     return view1;
 }
--(void)event_button_click:(id)sender{
+- (void)     event_button_click:(id)sender{
     
     [DatePickerUiComponent setDate:[NSDate date]];
     
     NSLog(@"Success!Do what event you want when click button (Touch up inside)");
+}
+- (void)    buildAndLoadUITableView{
+    
+//    - (instancetype)initWithFrame:(CGRect)frame
+//style:(UITableViewStyle)style;
+//    UiTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)style:UITableViewStyleGrouped];
+    //
+
 }
 
 
