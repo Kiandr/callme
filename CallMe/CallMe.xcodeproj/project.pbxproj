@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E22584E1E81990B003ECEF8 /* UITableViewControllerCustimized.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E22584D1E81990B003ECEF8 /* UITableViewControllerCustimized.m */; };
+		2E7158AE1E81BE9900BA0A16 /* UIViewFrameWorkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7158AD1E81BE9900BA0A16 /* UIViewFrameWorkModel.m */; };
 		2E93A92C1E7A2560009CF2E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E93A92B1E7A2560009CF2E1 /* main.m */; };
 		2E93A92F1E7A2560009CF2E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E93A92E1E7A2560009CF2E1 /* AppDelegate.m */; };
 		2E93A9321E7A2560009CF2E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E93A9311E7A2560009CF2E1 /* ViewController.m */; };
@@ -38,9 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E22584B1E819409003ECEF8 /* UIViewFrameOwekModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UIViewFrameOwekModel.h; path = KDR/UIViewFramework/Models/UIViewFrameOwekModel.h; sourceTree = "<group>"; };
+		2E22584B1E819409003ECEF8 /* UIViewFrameWorkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UIViewFrameWorkModel.h; path = KDR/UIViewFramework/Models/UIViewFrameWorkModel.h; sourceTree = "<group>"; };
 		2E22584C1E8198F7003ECEF8 /* UITableViewControllerCustimized.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UITableViewControllerCustimized.h; path = KDR/UIViewFramework/Services/UITableViewControllerCustimized.h; sourceTree = "<group>"; };
 		2E22584D1E81990B003ECEF8 /* UITableViewControllerCustimized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableViewControllerCustimized.m; path = KDR/UIViewFramework/Services/UITableViewControllerCustimized.m; sourceTree = "<group>"; };
+		2E7158AD1E81BE9900BA0A16 /* UIViewFrameWorkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewFrameWorkModel.m; path = KDR/UIViewFramework/Models/UIViewFrameWorkModel.m; sourceTree = "<group>"; };
 		2E93A9271E7A2560009CF2E1 /* CallMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E93A92B1E7A2560009CF2E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2E93A92D1E7A2560009CF2E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -91,7 +93,8 @@
 		2E2258491E819205003ECEF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2E22584B1E819409003ECEF8 /* UIViewFrameOwekModel.h */,
+				2E22584B1E819409003ECEF8 /* UIViewFrameWorkModel.h */,
+				2E7158AD1E81BE9900BA0A16 /* UIViewFrameWorkModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				2E93A92F1E7A2560009CF2E1 /* AppDelegate.m in Sources */,
 				2E22584E1E81990B003ECEF8 /* UITableViewControllerCustimized.m in Sources */,
 				2E93A92C1E7A2560009CF2E1 /* main.m in Sources */,
+				2E7158AE1E81BE9900BA0A16 /* UIViewFrameWorkModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +538,7 @@
 		2E93A9581E7A2560009CF2E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconWithPinkBackGround;
+				ASSETCATALOG_COMPILER_APPICON_NAME = NNDImprovedIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImageNurseNextDoor;
 				DEVELOPMENT_TEAM = 7Z59E8EDBY;
 				INFOPLIST_FILE = CallMe/Info.plist;
@@ -548,7 +552,7 @@
 		2E93A9591E7A2560009CF2E1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconWithPinkBackGround;
+				ASSETCATALOG_COMPILER_APPICON_NAME = NNDImprovedIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImageNurseNextDoor;
 				DEVELOPMENT_TEAM = 7Z59E8EDBY;
 				INFOPLIST_FILE = CallMe/Info.plist;

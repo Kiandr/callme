@@ -9,28 +9,27 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "UITableViewControllerCustimized.h"
-//#import "UIViewFrameOwekModel.h"
 
-@interface UIViewManager : NSObject
+
+@interface UIViewManager : UIView <UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic,strong) UIButton* UItoDateButton;
-//@property(nonatomic,strong) UIDatePicker* DatePickerUiComponent;
 
+@property (nonatomic, strong ) UITableView* uiTableView;
+
+@property (nonatomic) NSArray *timeZoneNames;
 @end
 
 
-@implementation UIViewManager : NSObject  
+@implementation UIViewManager   
 {
     UIDatePicker * DatePickerUiComponent;
     UITableView  * UiTableView;
-    
-    
 }
 - (id) init
 {
     self = [super init];
     if (self) {
         // All initializations you need
-       
     }
     return self;
 }
@@ -42,7 +41,7 @@
 - (UIView*)  buildAViewAndLoadIntoMainViewParameteizedAndDatePicker {
 UIColor * NNDBrandColour = [UIColor colorWithRed:236.0f green:0.0f blue:139.0f alpha:1.0f];
    
-    // Refference: http://stackoverflow.com/questions/30728062/add-views-in-uistackview-programmatically
+
     UIView *view1 = [[UIView alloc] init];
     view1.backgroundColor = [UIColor colorWithRed:236.0f green:0.0f blue:139.0f alpha:1.0f];
     UIWindow* window = [UIApplication sharedApplication].delegate.window;
@@ -51,11 +50,6 @@ UIColor * NNDBrandColour = [UIColor colorWithRed:236.0f green:0.0f blue:139.0f a
     CGPoint mainViewCoordinates = window.bounds.origin;
     // U coud put this coordinates into a propoer strucutre of code, TODO!
     view1.frame = CGRectMake(mainViewCoordinates.x, mainViewCoordinates.y+([[UIApplication sharedApplication] statusBarFrame].size.height), window.frame.size.width, window.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height);
-    // Load view to mainSuperview
-//    [mainView.view addSubview:view1];
-//[[UIApplication sharedApplication].keyWindow addSubview:view1];
-    
-
     
     /* UIPicker Function*/
     /*To be encamsulated into a prpoer class*/
@@ -63,7 +57,7 @@ UIColor * NNDBrandColour = [UIColor colorWithRed:236.0f green:0.0f blue:139.0f a
     
     DatePickerUiComponent = datePicker;
     
-    // How to change to a date only mode : http://stackoverflow.com/questions/15119565/showing-a-particular-date-in-uidatepicker-in-uidatepickermodedate-on-the-iphone
+    
     datePicker.datePickerMode = UIDatePickerModeDate;
     
     //TODO:  put this coordinates into a propoer strucutre of code, TODO!
@@ -71,64 +65,89 @@ UIColor * NNDBrandColour = [UIColor colorWithRed:236.0f green:0.0f blue:139.0f a
     
     // TODO:
     // Call back function to delegate method
-//    [datePicker addTarget:self action:@selector(DatePickerCallBackFunction:) forControlEvents:UIControlEventValueChanged];
+
     
-    // Add date piker to the this view controller.
     [view1 addSubview:datePicker];
     
     /*Button build*/
-    
     CGSize buttPickerSize = datePicker.frame.size;
     CGPoint buttPickerCoordinates = datePicker.frame.origin;
     
-    
-    
     UIButton *but= [UIButton buttonWithType:UIButtonTypeSystem];
-    
-    
     [but addTarget:self action:@selector(event_button_click:) forControlEvents:UIControlEventTouchUpInside];
-//    UImodel =[[UIViewFrameOwekModel alloc] init];
-//    int r = [UImodel getButtonFrameHeight];
-//    
-    
     [but setExclusiveTouch:YES];
     but.frame =CGRectMake(datePicker.frame.origin.x, datePicker.frame.origin.y+ datePicker.frame.size.height, window.frame.size.width/*/4*/, (window.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height)/10);
-//    [but addTarget:h action:@selector(event_button_click:) forControlEvents:UIControlEventTouchUpInside];
-//    [but setFrame:CGRectMake(mainViewCoordinates.x, mainViewCoordinates.y+([[UIApplication sharedApplication] statusBarFrame].size.height), mainView.view.frame.size.width, (mainView.view.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height)/10)];
     [but setTitle:@"set Today" forState:UIControlStateNormal];
     [but setExclusiveTouch:YES];
-//    but.backgroundColor=[UIColor redColor];
     [but setBackgroundColor:NNDBrandColour];
     [but setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    
     [but setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    
     [view1 addSubview:but];
-//    _toDateButton = but;
+    
+    
+    UiTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 400, 400) style:UITableViewStylePlain];
+        _uiTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _uiTableView.delegate = self;
+        _uiTableView.dataSource = self;
+    
+    
+    
+    
     
 //    UITableViewControllerCustimized *t = [[UITableViewControllerCustimized alloc]init];
-//    [t loadView:view1];
+//    [view1 addSubview:[t loadView:window]];
+//    
 
     
     
-    
-    
-    
+    [view1 addSubview: UiTableView];
     return view1;
 }
+
 - (void)     event_button_click:(id)sender{
-    
     [DatePickerUiComponent setDate:[NSDate date]];
-    
     NSLog(@"Success!Do what event you want when click button (Touch up inside)");
 }
-- (void)    buildAndLoadUITableView{
-    
-//    - (instancetype)initWithFrame:(CGRect)frame
-//style:(UITableViewStyle)style;
-//    UiTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)style:UITableViewStyleGrouped];
-    //
 
+
+
+#pragma mark - Table View Data source
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:
+(NSInteger)section{
+    return self.timeZoneNames.count;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:
+(NSIndexPath *)indexPath{
+    static NSString *MyIdentifier = @"MyIdentifier";
+    
+    /*
+     Retrieve a cell with the given identifier from the table view.
+     The cell is defined in the main storyboard: its identifier is MyIdentifier, and  its selection style is set to None.
+     */
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    
+    // Set up the cell.
+    NSString *timeZoneName = self.timeZoneNames[indexPath.row];
+    cell.textLabel.text = timeZoneName;
+    
+    return cell;
+    
+}
+
+// Default is 1 if not implemented
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
 
 @end
+
+
+
+
+/*
+ Notes:
+    // Refference:                          http://stackoverflow.com/questions/30728062/add-views-in-uistackview-programmatically
+    // How to change to a date only mode    http://stackoverflow.com/questions/15119565/showing-a-particular-date-in-uidatepicker-in-uidatepickermodedate-on-the-iphone
+ */

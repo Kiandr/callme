@@ -13,7 +13,9 @@
 
 @class UIViewManager;
 
-@interface UIViewManager : NSObject
+@interface UIViewManager : UIView <UITableViewDelegate, UITableViewDataSource>
+
+
 //{
 //// LocalVar
 //    id <UIViewManagerProtocol> delegate;
@@ -26,4 +28,5 @@
 - (UIView*) buildAViewAndLoadIntoMainViewParameteizedAndDatePicker;
 - (void)    callBackFunctionFromButton:(NSString*) someInput;
 - (void)    buildAndLoadUITableView;
+
 @end
