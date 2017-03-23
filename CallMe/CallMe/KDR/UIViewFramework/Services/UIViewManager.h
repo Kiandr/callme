@@ -8,20 +8,19 @@
 #import<Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "UIViewManagerProtocol.h"
-//#import "UITableViewControllerCustimized.h"
-//#import "UIViewFrameOwekModel.h"
+#import "UIViewFrameWorkModel.h"
 
 @class UIViewManager;
 
 @interface UIViewManager : UIView <UITableViewDelegate, UITableViewDataSource>
 
+// Properties
+@property (nonatomic, strong) UIButton*                 uItodateButton;
+@property (nonatomic, strong) UITableView*              uITableView;
+@property (nonatomic, strong) UIColor*                  nNDBrandColour;
+@property (nonatomic, strong) UIViewFrameWorkModel*     frameWorkModel;
 
-//{
-//// LocalVar
-//    id <UIViewManagerProtocol> delegate;
-//}
-//
-//@property(nonatomic,assign) id<UIViewManagerProtocol> delegate;
+
 
 // Main function available to viewController to deploy assets
 - (id)      init;
