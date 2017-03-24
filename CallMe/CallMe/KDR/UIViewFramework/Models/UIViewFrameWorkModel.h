@@ -57,8 +57,8 @@
 //upcomingVisistsButton
 @property (nonatomic,assign)  CGFloat uiUpcomingVisistsButtonFrameOriginex;
 @property (nonatomic,assign)  CGFloat uiUpcomingVisistsButtonFrameOriginey;
+@property (nonatomic,assign)  CGFloat uiUpcomingVisistsButtonFrameSizeWidth;
 @property (nonatomic,assign)  CGFloat uiUpcomingVisistsButtonFrameSizeHeight;
-@property (nonatomic,assign)  CGFloat uiUpcomingVisistsButtonFooterFrameSizeWidth;
 
 
 - (id) initWithUIviewSize: (UIView*) uiViewScreen;

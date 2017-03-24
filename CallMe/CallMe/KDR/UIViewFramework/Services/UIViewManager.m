@@ -13,7 +13,7 @@
 #import "UIViewFrameWorkModel.h"
 
 @implementation UIViewManager
--(UIView*)  mainViewInit:       (UIViewFrameWorkModel *)    localUIViewFrameWorkModel setBrandColour:(UIColor*) locBrandColour{
+-(UIView*)  mainViewInit:       (UIViewFrameWorkModel*)    localUIViewFrameWorkModel setBrandColour:(UIColor*) locBrandColour{
     UIView *tempView = [[UIView alloc] init];
     tempView.backgroundColor = locBrandColour;
     tempView.frame = CGRectMake(localUIViewFrameWorkModel.uiTableViewFrameOriginex,localUIViewFrameWorkModel.uiTableViewFrameOriginey, localUIViewFrameWorkModel.uiTableViewFrameSizeWidth,localUIViewFrameWorkModel.uiTableViewFrameSizeHeight);
@@ -23,7 +23,6 @@
     [tempView addSubview:[self addDatePicker:localUIViewFrameWorkModel]];
     // build Date Picker
     [tempView addSubview:[self addBrandFooter:localUIViewFrameWorkModel]];
-
 
     return tempView;
 }
@@ -119,7 +118,7 @@
         //upcomingVisistsButton
         localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginex             = windowView.frame.origin.x;
         localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginey             = localUIViewFrameWorkModel.uiFrameFooterFrameOriginey;
-        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFooterFrameSizeWidth      = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameSizeWidth      = windowView.frame.size.width;
         localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameSizeHeight           = localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight;
 
 
