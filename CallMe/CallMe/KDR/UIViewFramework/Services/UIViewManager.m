@@ -12,22 +12,61 @@
 #import "UIViewManager.h"
 #import "UIViewFrameWorkModel.h"
 
-
 @implementation UIViewManager
-
-
-- (UIView*) mainViewInit : (UIViewFrameWorkModel *)localUIViewFrameWorkModel setBrandColour:(UIColor*) locBrandColour;
-{
+-(UIView*)  mainViewInit:       (UIViewFrameWorkModel *)    localUIViewFrameWorkModel setBrandColour:(UIColor*) locBrandColour{
     UIView *tempView = [[UIView alloc] init];
     tempView.backgroundColor = locBrandColour;
     tempView.frame = CGRectMake(localUIViewFrameWorkModel.uiTableViewFrameOriginex,localUIViewFrameWorkModel.uiTableViewFrameOriginey, localUIViewFrameWorkModel.uiTableViewFrameSizeWidth,localUIViewFrameWorkModel.uiTableViewFrameSizeHeight);
-    // build table and deploy
+    // build Brand Header
+    [tempView addSubview:[self addBrandHeader:localUIViewFrameWorkModel]];
+    // build Date Picker
+    [tempView addSubview:[self addDatePicker:localUIViewFrameWorkModel]];
+    // build Date Picker
+    [tempView addSubview:[self addBrandFooter:localUIViewFrameWorkModel]];
+
 
     return tempView;
-};
+}
+-(UIView*)  addBrandFooter:     (UIViewFrameWorkModel*)     localUIViewFrameWorkModel {
 
--(UIColor*) setnNDBrandColour
-{
+    UIView * uiBrandFooterView = [[UIView alloc] initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiFrameFooterFrameOriginex , localUIViewFrameWorkModel.uiFrameFooterFrameOriginey , localUIViewFrameWorkModel.uiFrameFooterFrameSizeWidth, localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight)];
+    uiBrandFooterView.backgroundColor = [UIColor blueColor];
+
+    UIButton *upcomingVisistsButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    upcomingVisistsButton.frame = CGRectMake(localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginex,localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginey,localUIViewFrameWorkModel.uiFrameFooterFrameSizeWidth,localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight);
+    upcomingVisistsButton.backgroundColor = [UIColor yellowColor];
+    // This shall be localized for various languages
+    NSString *UpcomingVisits = [[NSString alloc] initWithFormat:@"Upcoming Visists"];
+
+    [upcomingVisistsButton setTitle:UpcomingVisits forState:UIControlStateNormal];
+    [upcomingVisistsButton setTintColor:[UIColor whiteColor]];
+
+    [uiBrandFooterView addSubview:upcomingVisistsButton];
+
+    return uiBrandFooterView;
+}
+-(UIView*)  addDatePicker:      (UIViewFrameWorkModel*)     localUIViewFrameWorkModel {
+    UIView* datePickerView = [[UIView alloc]initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiDatePickerFrameOriginex, localUIViewFrameWorkModel.uiDatePickerFrameOriginey, localUIViewFrameWorkModel.uiDatePickerFrameSizeWidth,localUIViewFrameWorkModel.uiDatePickerFrameSizeHeight)];
+    // Debugger Remove for production
+    datePickerView.backgroundColor = [UIColor greenColor];
+
+    return datePickerView;
+}
+-(UIView*)  addBrandHeader:     (UIViewFrameWorkModel*)     localUIViewFrameWorkModel {
+
+    UIView* brandHeaderView = [[UIView alloc]initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiBrandHeaderFrameOriginex, localUIViewFrameWorkModel.uiBrandHeaderFrameOriginey, localUIViewFrameWorkModel.uiBrandHeaderFrameSizeWidth,localUIViewFrameWorkModel.uiBrandHeaderFrameSizeHeight)];
+
+    UIImageView *brandIconImageFrameHolder =[[UIImageView alloc]initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiBrandIconFrameOriginex, localUIViewFrameWorkModel.uiBrandIconFrameOriginey , localUIViewFrameWorkModel.uiBrandIconFrameSizeWidth , localUIViewFrameWorkModel.uiBrandIconFrameSizeHeight)];
+
+    brandIconImageFrameHolder.image = [UIImage imageNamed:@"NNDIcon.png"];
+    // Debugger, remove for production
+    brandHeaderView.backgroundColor= [UIColor grayColor];
+    [brandHeaderView addSubview:brandIconImageFrameHolder];
+
+    return brandHeaderView;
+
+}
+-(UIColor*) setnNDBrandColour                                                         {
     UIColor *locBrandColor;
     @try
     {
@@ -42,27 +81,56 @@
     }
     return locBrandColor;
 }
+-(UIViewFrameWorkModel*) setOriginesOfWindow                                          {
 
--(UIViewFrameWorkModel*) setOriginesOfWindow{
-
-    UIViewFrameWorkModel * locUIViewFrameWorkModel = [[UIViewFrameWorkModel alloc]init];
+    UIViewFrameWorkModel * localUIViewFrameWorkModel = [[UIViewFrameWorkModel alloc]init];
 
     @try {
         UIWindow* windowView = [UIApplication sharedApplication].delegate.window;
-        locUIViewFrameWorkModel.uiTableViewFrameOriginex    = windowView.frame.origin.x;
-        locUIViewFrameWorkModel.uiTableViewFrameOriginey    = windowView.frame.origin.y     +([[UIApplication sharedApplication] statusBarFrame].size.height);
-        locUIViewFrameWorkModel.uiTableViewFrameSizeWidth   = windowView.frame.size.width;
-        locUIViewFrameWorkModel.uiTableViewFrameSizeHeight  = windowView.frame.size.height  -([[UIApplication sharedApplication] statusBarFrame].size.height);
+        localUIViewFrameWorkModel.uiTableViewFrameOriginex              = windowView.frame.origin.x;
+        localUIViewFrameWorkModel.uiTableViewFrameOriginey              = windowView.frame.origin.y     +([[UIApplication sharedApplication] statusBarFrame].size.height);
+        localUIViewFrameWorkModel.uiTableViewFrameSizeWidth             = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiTableViewFrameSizeHeight            = windowView.frame.size.height  -([[UIApplication sharedApplication] statusBarFrame].size.height);
+
+        // BrandHeader
+        localUIViewFrameWorkModel.uiBrandHeaderFrameOriginex           = windowView.frame.origin.x;
+        localUIViewFrameWorkModel.uiBrandHeaderFrameOriginey           = windowView.frame.origin.y;
+        localUIViewFrameWorkModel.uiBrandHeaderFrameSizeWidth          = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiBrandHeaderFrameSizeHeight         = 30;
+
+        // BrandIcon
+        localUIViewFrameWorkModel.uiBrandIconFrameOriginex             = (localUIViewFrameWorkModel.uiBrandHeaderFrameSizeWidth/2)-20;
+        localUIViewFrameWorkModel.uiBrandIconFrameOriginey             = windowView.frame.origin.y;
+        localUIViewFrameWorkModel.uiBrandIconFrameSizeWidth            = 40;
+        localUIViewFrameWorkModel.uiBrandIconFrameSizeHeight           = 30;
+
+        // DatePicker
+        localUIViewFrameWorkModel.uiDatePickerFrameOriginex             = windowView.frame.origin.x;
+        localUIViewFrameWorkModel.uiDatePickerFrameOriginey             = windowView.frame.origin.y+ localUIViewFrameWorkModel.uiBrandIconFrameSizeHeight;
+        localUIViewFrameWorkModel.uiDatePickerFrameSizeWidth            = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiDatePickerFrameSizeHeight           = windowView.frame.size.height/5;
+
+        // FrameFooter
+        localUIViewFrameWorkModel.uiFrameFooterFrameOriginex             = windowView.frame.origin.x;
+        localUIViewFrameWorkModel.uiFrameFooterFrameOriginey             = localUIViewFrameWorkModel.uiDatePickerFrameOriginey + localUIViewFrameWorkModel.uiDatePickerFrameSizeHeight ;
+        localUIViewFrameWorkModel.uiFrameFooterFrameSizeWidth            = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight           = localUIViewFrameWorkModel.uiBrandHeaderFrameSizeHeight ;
+
+        //upcomingVisistsButton
+        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginex             = windowView.frame.origin.x;
+        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginey             = localUIViewFrameWorkModel.uiFrameFooterFrameOriginey;
+        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFooterFrameSizeWidth      = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameSizeHeight           = localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight;
+
+
     }
     @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
     }
 
-    return locUIViewFrameWorkModel;
+    return localUIViewFrameWorkModel;
 }
-
-// Main Entry
-- (UIView*)  buildAViewAndLoadIntoMainViewParameteizedAndDatePicker {
+-(UIView*)  buildAViewAndLoadIntoMainViewParameteizedAndDatePicker                    {
 
     // Set the Brand Colour
     _nNDBrandColour = [UIColor colorWithRed:236.0f green:0.0f blue:139.0f alpha:1.0f];

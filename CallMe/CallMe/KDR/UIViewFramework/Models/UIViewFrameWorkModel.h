@@ -29,6 +29,38 @@
 @property (nonatomic,assign)  CGFloat uiTableViewFrameSizeHeight;
 @property (nonatomic,assign)  CGFloat uiTableViewFrameSizeWidth;
 
+// BrandHeader
+@property (nonatomic,assign)  CGFloat uiBrandHeaderFrameOriginex;
+@property (nonatomic,assign)  CGFloat uiBrandHeaderFrameOriginey;
+@property (nonatomic,assign)  CGFloat uiBrandHeaderFrameSizeHeight;
+@property (nonatomic,assign)  CGFloat uiBrandHeaderFrameSizeWidth;
+
+
+// Brandicon
+@property (nonatomic,assign)  CGFloat uiBrandIconFrameOriginex;
+@property (nonatomic,assign)  CGFloat uiBrandIconFrameOriginey;
+@property (nonatomic,assign)  CGFloat uiBrandIconFrameSizeHeight;
+@property (nonatomic,assign)  CGFloat uiBrandIconFrameSizeWidth;
+
+// DatePicker
+@property (nonatomic,assign)  CGFloat uiDatePickerFrameOriginex;
+@property (nonatomic,assign)  CGFloat uiDatePickerFrameOriginey;
+@property (nonatomic,assign)  CGFloat uiDatePickerFrameSizeHeight;
+@property (nonatomic,assign)  CGFloat uiDatePickerFrameSizeWidth;
+
+// BrandFotter
+@property (nonatomic,assign)  CGFloat uiFrameFooterFrameOriginex;
+@property (nonatomic,assign)  CGFloat uiFrameFooterFrameOriginey;
+@property (nonatomic,assign)  CGFloat uiFrameFooterFrameSizeHeight;
+@property (nonatomic,assign)  CGFloat uiFrameFooterFrameSizeWidth;
+
+//upcomingVisistsButton
+@property (nonatomic,assign)  CGFloat uiUpcomingVisistsButtonFrameOriginex;
+@property (nonatomic,assign)  CGFloat uiUpcomingVisistsButtonFrameOriginey;
+@property (nonatomic,assign)  CGFloat uiUpcomingVisistsButtonFrameSizeHeight;
+@property (nonatomic,assign)  CGFloat uiUpcomingVisistsButtonFooterFrameSizeWidth;
+
+
 - (id) initWithUIviewSize: (UIView*) uiViewScreen;
 @end
 
