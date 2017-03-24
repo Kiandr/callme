@@ -13,7 +13,7 @@
 #import "UIViewFrameWorkModel.h"
 
 @implementation UIViewManager
--(UIView*)  mainViewInit:       (UIViewFrameWorkModel*)    localUIViewFrameWorkModel setBrandColour:(UIColor*) locBrandColour{
+-(UIView*)  mainViewInit:       (UIViewFrameWorkModel*)     localUIViewFrameWorkModel setBrandColour:(UIColor*) locBrandColour{
     UIView *tempView = [[UIView alloc] init];
     tempView.backgroundColor = locBrandColour;
     tempView.frame = CGRectMake(localUIViewFrameWorkModel.uiTableViewFrameOriginex,localUIViewFrameWorkModel.uiTableViewFrameOriginey, localUIViewFrameWorkModel.uiTableViewFrameSizeWidth,localUIViewFrameWorkModel.uiTableViewFrameSizeHeight);
@@ -31,23 +31,34 @@
     UIView * uiBrandFooterView = [[UIView alloc] initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiFrameFooterFrameOriginex , localUIViewFrameWorkModel.uiFrameFooterFrameOriginey , localUIViewFrameWorkModel.uiFrameFooterFrameSizeWidth, localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight)];
     uiBrandFooterView.backgroundColor = [UIColor blueColor];
 
-    UIButton *upcomingVisistsButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    UIButton *upcomingVisistsButton = [UIButton buttonWithType:UIButtonTypeSystem];
     upcomingVisistsButton.frame = CGRectMake(localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginex,localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginey,localUIViewFrameWorkModel.uiFrameFooterFrameSizeWidth,localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight);
-    upcomingVisistsButton.backgroundColor = [UIColor yellowColor];
+    upcomingVisistsButton.backgroundColor = [UIColor clearColor];
     // This shall be localized for various languages
     NSString *UpcomingVisits = [[NSString alloc] initWithFormat:@"Upcoming Visists"];
 
     [upcomingVisistsButton setTitle:UpcomingVisits forState:UIControlStateNormal];
     [upcomingVisistsButton setTintColor:[UIColor whiteColor]];
-
+    [upcomingVisistsButton addTarget:self  action:@selector(upcomingVisistsButtonCallBackFunction:) forControlEvents:UIControlEventTouchDown];
     [uiBrandFooterView addSubview:upcomingVisistsButton];
 
     return uiBrandFooterView;
 }
+-(void)     upcomingVisistsButtonCallBackFunction:(id*)     sender                    {
+
+    [_UIDatePickerGlobarlVar setDate:[NSDate date]];
+    // Update and refresh content of tableView
+
+}
 -(UIView*)  addDatePicker:      (UIViewFrameWorkModel*)     localUIViewFrameWorkModel {
     UIView* datePickerView = [[UIView alloc]initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiDatePickerFrameOriginex, localUIViewFrameWorkModel.uiDatePickerFrameOriginey, localUIViewFrameWorkModel.uiDatePickerFrameSizeWidth,localUIViewFrameWorkModel.uiDatePickerFrameSizeHeight)];
-    // Debugger Remove for production
+
     datePickerView.backgroundColor = [UIColor greenColor];
+    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiDatePickerOriginex, localUIViewFrameWorkModel.uiDatePickerOriginey, localUIViewFrameWorkModel.uiDatePickerSizeWidth, localUIViewFrameWorkModel.uiDatePickerSizeHeight)];
+    datePicker.backgroundColor = [UIColor yellowColor];
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [datePickerView addSubview:datePicker];
+    _UIDatePickerGlobarlVar = datePicker;
 
     return datePickerView;
 }
@@ -95,19 +106,25 @@
         localUIViewFrameWorkModel.uiBrandHeaderFrameOriginex           = windowView.frame.origin.x;
         localUIViewFrameWorkModel.uiBrandHeaderFrameOriginey           = windowView.frame.origin.y;
         localUIViewFrameWorkModel.uiBrandHeaderFrameSizeWidth          = windowView.frame.size.width;
-        localUIViewFrameWorkModel.uiBrandHeaderFrameSizeHeight         = 30;
+        localUIViewFrameWorkModel.uiBrandHeaderFrameSizeHeight         = 35;
 
         // BrandIcon
         localUIViewFrameWorkModel.uiBrandIconFrameOriginex             = (localUIViewFrameWorkModel.uiBrandHeaderFrameSizeWidth/2)-20;
         localUIViewFrameWorkModel.uiBrandIconFrameOriginey             = windowView.frame.origin.y;
         localUIViewFrameWorkModel.uiBrandIconFrameSizeWidth            = 40;
-        localUIViewFrameWorkModel.uiBrandIconFrameSizeHeight           = 30;
+        localUIViewFrameWorkModel.uiBrandIconFrameSizeHeight           =   localUIViewFrameWorkModel.uiBrandHeaderFrameSizeHeight ;
 
-        // DatePicker
+        // DatePickerFrame
         localUIViewFrameWorkModel.uiDatePickerFrameOriginex             = windowView.frame.origin.x;
         localUIViewFrameWorkModel.uiDatePickerFrameOriginey             = windowView.frame.origin.y+ localUIViewFrameWorkModel.uiBrandIconFrameSizeHeight;
         localUIViewFrameWorkModel.uiDatePickerFrameSizeWidth            = windowView.frame.size.width;
         localUIViewFrameWorkModel.uiDatePickerFrameSizeHeight           = windowView.frame.size.height/5;
+
+        // DatePicker
+        localUIViewFrameWorkModel.uiDatePickerOriginex                  = windowView.frame.origin.x;
+        localUIViewFrameWorkModel.uiDatePickerOriginey                  = windowView.frame.origin.y;
+        localUIViewFrameWorkModel.uiDatePickerSizeWidth                 = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiDatePickerSizeHeight                = windowView.frame.size.height/5;
 
         // FrameFooter
         localUIViewFrameWorkModel.uiFrameFooterFrameOriginex             = windowView.frame.origin.x;
@@ -117,8 +134,8 @@
 
         //upcomingVisistsButton
         localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginex             = windowView.frame.origin.x;
-        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginey             = localUIViewFrameWorkModel.uiFrameFooterFrameOriginey;
-        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameSizeWidth      = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginey             = windowView.frame.origin.y;
+        localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameSizeWidth            = windowView.frame.size.width;
         localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameSizeHeight           = localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight;
 
 
@@ -137,85 +154,6 @@
     return ([self mainViewInit:[self setOriginesOfWindow] setBrandColour:_nNDBrandColour]);
 }
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    @property (nonatomic,assign)  CGFloat uiTableViewFrameOriginex;
-//    @property (nonatomic,assign)  CGFloat uiTableViewFrameOriginey;
-//    @property (nonatomic,assign)  CGFloat uiTableViewFrameSizeHeight;
-//    @property (nonatomic,assign)  CGFloat uiTableViewFrameSizeWidth;
-
-
-//    _uiTableView = mainViewInit();
-
-
-    //
-//
-//    UIView *view1 = [[UIView alloc] init];
-//    view1.backgroundColor = [UIColor colorWithRed:236.0f green:0.0f blue:139.0f alpha:1.0f];
-//    UIWindow* window = [UIApplication sharedApplication].delegate.window;
-//    
-//    CGSize viewSize = window.frame.size;
-//    CGPoint mainViewCoordinates = window.bounds.origin;
-//    // U coud put this coordinates into a propoer strucutre of code, TODO!
-//    view1.frame = CGRectMake(mainViewCoordinates.x, mainViewCoordinates.y+([[UIApplication sharedApplication] statusBarFrame].size.height), window.frame.size.width, window.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height);
-//    
-//    /* UIPicker Function*/
-//    /*To be encamsulated into a prpoer class*/
-//    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
-//    
-//    DatePickerUiComponent = datePicker;
-//    
-//    
-//    datePicker.datePickerMode = UIDatePickerModeDate;
-//    
-//    //TODO:  put this coordinates into a propoer strucutre of code, TODO!
-//    datePicker.frame = CGRectMake(mainViewCoordinates.x, mainViewCoordinates.y+([[UIApplication sharedApplication] statusBarFrame].size.height), window.frame.size.width, (window.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height)/10);;
-//    
-//    // TODO:
-//    // Call back function to delegate method
-//
-//    
-//    [view1 addSubview:datePicker];
-//    
-//    /*Button build*/
-//    CGSize buttPickerSize = datePicker.frame.size;
-//    CGPoint buttPickerCoordinates = datePicker.frame.origin;
-//    
-//    UIButton *but= [UIButton buttonWithType:UIButtonTypeSystem];
-//    [but addTarget:self action:@selector(event_button_click:) forControlEvents:UIControlEventTouchUpInside];
-//    [but setExclusiveTouch:YES];
-//    but.frame =CGRectMake(datePicker.frame.origin.x, datePicker.frame.origin.y+ datePicker.frame.size.height, window.frame.size.width/*/4*/, (window.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height)/10);
-//    [but setTitle:@"set Today" forState:UIControlStateNormal];
-//    [but setExclusiveTouch:YES];
-//    [but setBackgroundColor:NNDBrandColour];
-//    [but setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [but setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-//    
-//    [view1 addSubview:but];
-//
-//    
-//    [view1 addSubview: UiTableView];
-//    return view1;
-//}
-
-//- (void)     event_button_click:(id)sender{
-//    [DatePickerUiComponent setDate:[NSDate date]];
-//    NSLog(@"Success!Do what event you want when click button (Touch up inside)");
-//}
-
-
 
 /*
  Notes:

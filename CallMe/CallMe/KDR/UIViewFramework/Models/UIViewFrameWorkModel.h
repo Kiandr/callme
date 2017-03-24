@@ -42,11 +42,18 @@
 @property (nonatomic,assign)  CGFloat uiBrandIconFrameSizeHeight;
 @property (nonatomic,assign)  CGFloat uiBrandIconFrameSizeWidth;
 
-// DatePicker
+// DatePicker Frame
 @property (nonatomic,assign)  CGFloat uiDatePickerFrameOriginex;
 @property (nonatomic,assign)  CGFloat uiDatePickerFrameOriginey;
 @property (nonatomic,assign)  CGFloat uiDatePickerFrameSizeHeight;
 @property (nonatomic,assign)  CGFloat uiDatePickerFrameSizeWidth;
+
+// DatePicker 
+@property (nonatomic,assign)  CGFloat uiDatePickerOriginex;
+@property (nonatomic,assign)  CGFloat uiDatePickerOriginey;
+@property (nonatomic,assign)  CGFloat uiDatePickerSizeWidth;
+@property (nonatomic,assign)  CGFloat uiDatePickerSizeHeight;
+
 
 // BrandFotter
 @property (nonatomic,assign)  CGFloat uiFrameFooterFrameOriginex;

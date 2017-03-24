@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UITableView*              uITableView;
 @property (nonatomic, strong) UIColor*                  nNDBrandColour;
 @property (nonatomic, strong) UIViewFrameWorkModel*     frameWorkModel;
+@property (nonatomic, strong) UIDatePicker* UIDatePickerGlobarlVar;
 
 
 
