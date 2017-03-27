@@ -16,16 +16,23 @@
 -(UIView*)  mainViewInit:       (UIViewFrameWorkModel*)     localUIViewFrameWorkModel setBrandColour:(UIColor*) locBrandColour{
     UIView *tempView = [[UIView alloc] init];
     tempView.backgroundColor = locBrandColour;
-    tempView.frame = CGRectMake(localUIViewFrameWorkModel.uiTableViewFrameOriginex,localUIViewFrameWorkModel.uiTableViewFrameOriginey, localUIViewFrameWorkModel.uiTableViewFrameSizeWidth,localUIViewFrameWorkModel.uiTableViewFrameSizeHeight);
+    tempView.frame = CGRectMake(localUIViewFrameWorkModel.uiMainViewFrameOriginex,localUIViewFrameWorkModel.uiMainViewFrameOriginey, localUIViewFrameWorkModel.uiMainViewFrameSizeWidth,localUIViewFrameWorkModel.uiMainViewFrameSizeHeight);
     // build Brand Header
     [tempView addSubview:[self addBrandHeader:localUIViewFrameWorkModel]];
     // build Date Picker
     [tempView addSubview:[self addDatePicker:localUIViewFrameWorkModel]];
     // build Date Picker
     [tempView addSubview:[self addBrandFooter:localUIViewFrameWorkModel]];
+    // build TableView
+    [tempView addSubview:[self addUITableView:localUIViewFrameWorkModel]];
 
     return tempView;
 }
+-(UIView*)  addUITableView:     (UIViewFrameWorkModel*)     localUIViewFrameWorkModel {
+    UITableView *localUITableView = [[UITableView alloc]initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiTableViewFrameOriginex , localUIViewFrameWorkModel.uiTableViewFrameOriginey , localUIViewFrameWorkModel.uiTableViewFrameSizeWidth, localUIViewFrameWorkModel.uiTableViewFrameSizeHeight ) style:UITableViewCellStyleSubtitle];
+    localUITableView.backgroundColor = _nNDBrandColour;
+    return localUITableView;
+};
 -(UIView*)  addBrandFooter:     (UIViewFrameWorkModel*)     localUIViewFrameWorkModel {
 
     UIView * uiBrandFooterView = [[UIView alloc] initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiFrameFooterFrameOriginex , localUIViewFrameWorkModel.uiFrameFooterFrameOriginey , localUIViewFrameWorkModel.uiFrameFooterFrameSizeWidth, localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight)];
@@ -97,10 +104,10 @@
 
     @try {
         UIWindow* windowView = [UIApplication sharedApplication].delegate.window;
-        localUIViewFrameWorkModel.uiTableViewFrameOriginex              = windowView.frame.origin.x;
-        localUIViewFrameWorkModel.uiTableViewFrameOriginey              = windowView.frame.origin.y     +([[UIApplication sharedApplication] statusBarFrame].size.height);
-        localUIViewFrameWorkModel.uiTableViewFrameSizeWidth             = windowView.frame.size.width;
-        localUIViewFrameWorkModel.uiTableViewFrameSizeHeight            = windowView.frame.size.height  -([[UIApplication sharedApplication] statusBarFrame].size.height);
+        localUIViewFrameWorkModel.uiMainViewFrameOriginex              = windowView.frame.origin.x;
+        localUIViewFrameWorkModel.uiMainViewFrameOriginey              = windowView.frame.origin.y     +([[UIApplication sharedApplication] statusBarFrame].size.height);
+        localUIViewFrameWorkModel.uiMainViewFrameSizeWidth             = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiMainViewFrameSizeHeight            = windowView.frame.size.height  -([[UIApplication sharedApplication] statusBarFrame].size.height);
 
         // BrandHeader
         localUIViewFrameWorkModel.uiBrandHeaderFrameOriginex           = windowView.frame.origin.x;
@@ -137,6 +144,14 @@
         localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginey             = windowView.frame.origin.y;
         localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameSizeWidth            = windowView.frame.size.width;
         localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameSizeHeight           = localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight;
+
+        // UITableView
+        localUIViewFrameWorkModel.uiTableViewFrameOriginex = 0;
+        localUIViewFrameWorkModel.uiTableViewFrameOriginey =        localUIViewFrameWorkModel.uiFrameFooterFrameOriginey+ localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameSizeHeight ;
+        localUIViewFrameWorkModel.uiTableViewFrameSizeWidth = windowView.frame.size.width;
+        localUIViewFrameWorkModel.uiTableViewFrameSizeHeight = windowView.frame.size.height- localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight  - localUIViewFrameWorkModel.uiDatePickerSizeHeight - localUIViewFrameWorkModel.uiBrandHeaderFrameSizeHeight - ([[UIApplication sharedApplication] statusBarFrame].size.height);
+
+
 
 
     }
