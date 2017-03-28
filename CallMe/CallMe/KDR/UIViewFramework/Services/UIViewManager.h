@@ -16,7 +16,7 @@
 
 // Properties
 @property (nonatomic, strong) UIButton*                 uItodateButton;
-@property (nonatomic, strong) UITableView*              uITableView;
+@property (nonatomic, strong) UITableView*              uITableViewComponent;
 @property (nonatomic, strong) UIColor*                  nNDBrandColour;
 @property (nonatomic, strong) UIViewFrameWorkModel*     frameWorkModel;
 @property (nonatomic, strong) UIDatePicker* UIDatePickerGlobarlVar;

@@ -31,8 +31,11 @@
 -(UIView*)  addUITableView:     (UIViewFrameWorkModel*)     localUIViewFrameWorkModel {
     UITableView *localUITableView = [[UITableView alloc]initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiTableViewFrameOriginex , localUIViewFrameWorkModel.uiTableViewFrameOriginey , localUIViewFrameWorkModel.uiTableViewFrameSizeWidth, localUIViewFrameWorkModel.uiTableViewFrameSizeHeight ) style:UITableViewCellStyleSubtitle];
     localUITableView.backgroundColor = _nNDBrandColour;
+    localUITableView.dataSource = self;
+    localUITableView.delegate = self;
+
     return localUITableView;
-};
+}
 -(UIView*)  addBrandFooter:     (UIViewFrameWorkModel*)     localUIViewFrameWorkModel {
 
     UIView * uiBrandFooterView = [[UIView alloc] initWithFrame:CGRectMake(localUIViewFrameWorkModel.uiFrameFooterFrameOriginex , localUIViewFrameWorkModel.uiFrameFooterFrameOriginey , localUIViewFrameWorkModel.uiFrameFooterFrameSizeWidth, localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight)];
@@ -151,6 +154,16 @@
         localUIViewFrameWorkModel.uiTableViewFrameSizeWidth = windowView.frame.size.width;
         localUIViewFrameWorkModel.uiTableViewFrameSizeHeight = windowView.frame.size.height- localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight  - localUIViewFrameWorkModel.uiDatePickerSizeHeight - localUIViewFrameWorkModel.uiBrandHeaderFrameSizeHeight - ([[UIApplication sharedApplication] statusBarFrame].size.height);
 
+        // UITableViewCell
+        localUIViewFrameWorkModel.uiTableViewRowHeight= 150.0f;
+
+        //cell.textLabel.frame
+
+        localUIViewFrameWorkModel.cellTextLabelFrameOriginesX= 0;
+        localUIViewFrameWorkModel.cellTextLabelFrameOriginesY= 0;
+        localUIViewFrameWorkModel.cellTextLabelFrameSizeWidth= 50;
+        localUIViewFrameWorkModel.cellTextLabelFrameSizeHeight= 50;
+
 
 
 
@@ -168,6 +181,90 @@
 
     return ([self mainViewInit:[self setOriginesOfWindow] setBrandColour:_nNDBrandColour]);
 }
+
+#pragma UITableViewDataSource
+-(NSInteger)        numberOfSectionsInTableView:    (UITableView *)             theTableView                                                    {
+    return 1;
+}
+-(NSInteger)        tableView:                      (UITableView *)             theTableView numberOfRowsInSection:(NSInteger)      section     {
+    return 2;
+}
+-(UITableViewCell*) tableView:                      (UITableView *)             tableView cellForRowAtIndexPath:(NSIndexPath*)      indexPath   {
+    return [self UITableViewcellBuildAndShape:_frameWorkModel];
+}
+-(UITableViewCell*) UITableViewcellBuildAndShape:   (UIViewFrameWorkModel*)     localUIViewFrameWorkModel                                       {
+
+    UITableViewCell *cell = NULL;
+
+
+    @try {
+
+        cell = [_uITableViewComponent dequeueReusableCellWithIdentifier:@"MyCell"];
+
+
+    } @catch (NSException *exception) {
+         NSLog(@"%@", exception.reason);
+    }
+    @finally {
+
+        if(cell == nil)
+        {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyCell"];
+        }
+
+    }
+
+
+
+    _uITableViewComponent.rowHeight = localUIViewFrameWorkModel.uiTableViewRowHeight;
+    
+            cell.textLabel.frame = CGRectMake(localUIViewFrameWorkModel.cellTextLabelFrameOriginesX,localUIViewFrameWorkModel.cellTextLabelFrameOriginesY,localUIViewFrameWorkModel.cellTextLabelFrameSizeWidth,localUIViewFrameWorkModel.cellTextLabelFrameSizeHeight);
+
+    //// Date
+
+    // TODO:
+    // You need a string serializer to built date and name into a single line.
+    // Define how many letters do you need, and inject that into one signle line.
+
+    cell.textLabel.text = @"John Oliver";
+    cell.textLabel.font = [UIFont italicSystemFontOfSize:20];
+    cell.textLabel.textAlignment = UITextAlignmentLeft;
+    [cell.textLabel adjustsFontSizeToFitWidth];
+    [cell.textLabel sizeToFit];
+//    cell.textLabel.numberOfLines = 2;
+//    cell.textLabel.textColor = _nNDBrandColour;
+//    [cell.textLabel setFont: [cell.textLabel.font fontWithSize: 20]];
+
+    UILabel *date = [[UILabel alloc] init];
+    date.text  = @"12:00 0 14:00";
+    date.textColor = _nNDBrandColour;
+//    [date setFont: [date.font fontWithSize: 20]];
+    // Image Google map
+    UIImageView *googleUIImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"google_maps-512"]];
+    googleUIImageView.frame = CGRectMake(cell.accessoryView.frame.size.width+100, 20, 30, 30);
+    cell.accessoryView = date;
+    cell.accessoryView.frame = CGRectMake(0, 0, 150, 20);
+    cell.accessoryView.translatesAutoresizingMaskIntoConstraints = YES;
+    [cell.accessoryView addSubview:googleUIImageView];
+
+
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0,cell.textLabel.frame.size.height+2,150.0f,20.0f)];
+    lbl.textAlignment = UITextAlignmentLeft;
+//    lbl.font = [UIFont fontWithName:@"SF" size:14.0f];
+//    lbl.textColor = [UIColor lightGrayColor];
+    lbl.text = @"Ref.No.test";
+
+    [cell.textLabel addSubview:lbl];
+    
+
+    //
+
+       return cell;
+
+}
+-(void)             tableView:                      (UITableView *)theTableView didSelectRowAtIndexPath:    (NSIndexPath*)          indexPath   {
+    NSLog(@"selected  %@ row",indexPath );}
+
 @end
 
 /*

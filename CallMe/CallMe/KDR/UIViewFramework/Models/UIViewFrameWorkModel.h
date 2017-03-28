@@ -73,6 +73,15 @@
 @property (nonatomic,assign)  CGFloat uiMainViewFrameSizeWidth;
 @property (nonatomic,assign)  CGFloat uiMainViewFrameSizeHeight;
 
+//TableView Cells
+@property (nonatomic, assign) CGFloat uiTableViewRowHeight;
+
+//cell.textLabel.frame
+@property (nonatomic, assign) CGFloat cellTextLabelFrameOriginesX;
+@property (nonatomic, assign) CGFloat cellTextLabelFrameOriginesY;
+@property (nonatomic, assign) CGFloat cellTextLabelFrameSizeWidth;
+@property (nonatomic, assign) CGFloat cellTextLabelFrameSizeHeight;
+
 
 
 - (id) initWithUIviewSize: (UIView*) uiViewScreen;
