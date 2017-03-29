@@ -45,7 +45,7 @@
     upcomingVisistsButton.frame = CGRectMake(localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginex,localUIViewFrameWorkModel.uiUpcomingVisistsButtonFrameOriginey,localUIViewFrameWorkModel.uiFrameFooterFrameSizeWidth,localUIViewFrameWorkModel.uiFrameFooterFrameSizeHeight);
     upcomingVisistsButton.backgroundColor = [UIColor clearColor];
     // This shall be localized for various languages
-    NSString *UpcomingVisits = [[NSString alloc] initWithFormat:@"Upcoming Visists"];
+    NSString *UpcomingVisits = [[NSString alloc] initWithFormat:@"upcoming visits"];
 
     [upcomingVisistsButton setTitle:UpcomingVisits forState:UIControlStateNormal];
     [upcomingVisistsButton setTintColor:[UIColor whiteColor]];
