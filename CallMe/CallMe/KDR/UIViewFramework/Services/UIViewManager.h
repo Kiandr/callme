@@ -15,7 +15,7 @@
 @interface UIViewManager : UIView <UITableViewDelegate, UITableViewDataSource>
 
 // Properties
-@property (nonatomic, strong) UIButton*                 uItodateButton;
+
 @property (nonatomic, strong) UITableView*              uITableViewComponent;
 @property (nonatomic, strong) UIColor*                  nNDBrandColour;
 @property (nonatomic, strong) UIViewFrameWorkModel*     frameWorkModel;

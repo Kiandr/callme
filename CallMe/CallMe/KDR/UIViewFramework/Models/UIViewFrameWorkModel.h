@@ -75,6 +75,8 @@
 
 //TableView Cells
 @property (nonatomic, assign) CGFloat uiTableViewRowHeight;
+@property (nonatomic, assign) CGFloat uiTableViewRowNumber;
+
 
 //cell.textLabel.frame
 @property (nonatomic, assign) CGFloat cellTextLabelFrameOriginesX;
@@ -85,6 +87,7 @@
 
 
 - (id) initWithUIviewSize: (UIView*) uiViewScreen;
+
 @end
 
 
