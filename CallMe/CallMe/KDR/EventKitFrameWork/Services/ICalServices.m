@@ -17,8 +17,7 @@
 #pragma mark -
 #pragma mark View lifecycle
 // Entry
-- (void)loadCalanderServices
-{
+- (void)loadCalanderServices {
 
     // Initialize the event store
     self.eventStore = [[EKEventStore alloc] init];
@@ -30,38 +29,13 @@
     //    [self checkEventStoreAccessForCalendar];
 }
 
-
-
-
 // This method is called when the user selects an event in the table view. It configures the destination
 // event view controller with this event.
 
-
-#pragma mark -
-#pragma mark Table View
-
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return self.eventsList.count;
-//}
-//
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
-//
-//    // Get the event at the row selected and display its title
-//    cell.textLabel.text = [(self.eventsList)[indexPath.row] title];
-//    return cell;
-//}
-
-
-#pragma mark -
 #pragma mark Access Calendar
 
 // Check the authorization status of our application for Calendar
--(void)checkEventStoreAccessForCalendar
-{
+-(void)checkEventStoreAccessForCalendar {
     EKAuthorizationStatus status = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
 
     switch (status)
@@ -93,8 +67,7 @@
 
 
 // Prompt the user for access to their Calendar
--(void)requestCalendarAccess
-{
+-(void)requestCalendarAccess {
     [self.eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error)
      {
          if (granted)
@@ -111,8 +84,7 @@
 
 
 // This method is called when the user has granted permission to Calendar
--(void)accessGrantedForCalendar
-{
+-(void)accessGrantedForCalendar {
     // Let's get the default calendar associated with our event store
     self.defaultCalendar = self.eventStore.defaultCalendarForNewEvents;
     // Enable the Add button
@@ -124,12 +96,10 @@
 }
 
 
-#pragma mark -
 #pragma mark Fetch events
 
 // Fetch all events happening in the next 24 hours
-- (NSMutableArray *)fetchEvents
-{
+- (NSMutableArray *)fetchEvents {
     NSDate *startDate = [NSDate date];
 
     //Create the end date components
@@ -154,13 +124,11 @@
 }
 
 
-#pragma mark -
 #pragma mark Add a new event
 
 // Display an event edit view controller when the user taps the "+" button.
 // A new event is added to Calendar when the user taps the "Done" button in the above view controller.
-- (IBAction)addEvent:(id)sender
-{
+- (IBAction)addEvent:(id)sender {
     // Create an instance of EKEventEditViewController
     EKEventEditViewController *addController = [[EKEventEditViewController alloc] init];
 
@@ -170,14 +138,10 @@
     //    [self presentViewController:addController animated:YES completion:nil];
 }
 
-
-#pragma mark -
 #pragma mark EKEventEditViewDelegate
 
 // Overriding EKEventEditViewDelegate method to update event store according to user actions.
-- (void)eventEditViewController:(EKEventEditViewController *)controller
-          didCompleteWithAction:(EKEventEditViewAction)action
-{
+- (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action {
     ICalServices * __weak weakSelf = self;
     // Dismiss the modal view controller
     //    [self dismissViewControllerAnimated:YES completion:^
@@ -194,11 +158,4 @@
         //     }];
     }
 }
-
-
-// Set the calendar edited by EKEventEditViewController to our chosen calendar - the default calendar.
-//- (EKCalendar *)eventEditViewControllerDefaultCalendarForNewEvents:(EKEventEditViewController *)controller
-//{
-//    return self.defaultCalendar;
-//}
 @end

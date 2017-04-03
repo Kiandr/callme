@@ -8,28 +8,31 @@
 
 #import "ViewController.h"
 #include "UIViewManager.h"
+#import "ICalServices.h"
 
 @interface ViewController ()
 @property(nonatomic,strong)UIViewManager *uiManager;
+@property(nonatomic,strong)ICalServices *calServices;
 @end
 
 @implementation ViewController
 
-//@synthesize uiManager = _uiManager;
-//{
-//UIViewManager *uiManager;
-//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-//    UIViewManager  *LocUiManager = [[UIViewManager alloc] init];
-//    _uiManager =[[UIViewManager alloc] init];
-//    uiManager = LocUiManager;
-// [self.view addSubview:[LocUiManager buildAViewAndLoadIntoMainViewParameteizedAndDatePicker]];
      _uiManager= [[UIViewManager alloc]init];
-//  UIView *test = _uiManager.buildAViewAndLoadIntoMainViewParameteizedAndDatePicker;
-//        UIView *test =[_uiManager buildAViewAndLoadIntoMainViewParameteizedAndDatePicker];
      [self.view addSubview:[_uiManager buildAViewAndLoadIntoMainViewParameteizedAndDatePicker]];
+    _calServices = [[ICalServices alloc]init];
+    [_calServices checkEventStoreAccessForCalendar];
+    [_calServices loadCalanderServices];
+//
+    [_calServices fetchEvents];
+    /*
+     
+     - (void) loadCalanderServices;
+     - (void) checkEventStoreAccessForCalendar;
+     - (NSMutableArray *)fetchEvents;
+     */
 
 }
 
