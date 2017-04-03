@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E22584E1E81990B003ECEF8 /* UITableViewControllerCustimized.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E22584D1E81990B003ECEF8 /* UITableViewControllerCustimized.m */; };
+		2E4BF4A61E92F3E400B92BFB /* ICalServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E4BF4A51E92F3E400B92BFB /* ICalServices.m */; };
 		2E7158AE1E81BE9900BA0A16 /* UIViewFrameWorkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7158AD1E81BE9900BA0A16 /* UIViewFrameWorkModel.m */; };
 		2E93A92C1E7A2560009CF2E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E93A92B1E7A2560009CF2E1 /* main.m */; };
 		2E93A92F1E7A2560009CF2E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E93A92E1E7A2560009CF2E1 /* AppDelegate.m */; };
@@ -42,6 +43,8 @@
 		2E22584B1E819409003ECEF8 /* UIViewFrameWorkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UIViewFrameWorkModel.h; path = KDR/UIViewFramework/Models/UIViewFrameWorkModel.h; sourceTree = "<group>"; };
 		2E22584C1E8198F7003ECEF8 /* UITableViewControllerCustimized.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UITableViewControllerCustimized.h; path = KDR/UIViewFramework/Services/UITableViewControllerCustimized.h; sourceTree = "<group>"; };
 		2E22584D1E81990B003ECEF8 /* UITableViewControllerCustimized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableViewControllerCustimized.m; path = KDR/UIViewFramework/Services/UITableViewControllerCustimized.m; sourceTree = "<group>"; };
+		2E4BF4A41E92F3C700B92BFB /* ICalServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ICalServices.h; path = KDR/EventKitFrameWork/Services/ICalServices.h; sourceTree = "<group>"; };
+		2E4BF4A51E92F3E400B92BFB /* ICalServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ICalServices.m; path = KDR/EventKitFrameWork/Services/ICalServices.m; sourceTree = "<group>"; };
 		2E7158AD1E81BE9900BA0A16 /* UIViewFrameWorkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewFrameWorkModel.m; path = KDR/UIViewFramework/Models/UIViewFrameWorkModel.m; sourceTree = "<group>"; };
 		2E93A9271E7A2560009CF2E1 /* CallMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E93A92B1E7A2560009CF2E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +100,15 @@
 				2E7158AD1E81BE9900BA0A16 /* UIViewFrameWorkModel.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		2E4BF4A31E92F3AB00B92BFB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2E4BF4A41E92F3C700B92BFB /* ICalServices.h */,
+				2E4BF4A51E92F3E400B92BFB /* ICalServices.m */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		2E93A91E1E7A2560009CF2E1 = {
@@ -201,6 +213,7 @@
 		2EAA32B01E7B3CBF00876DD5 /* EventKitFrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				2E4BF4A31E92F3AB00B92BFB /* Services */,
 			);
 			name = EventKitFrameWork;
 			sourceTree = "<group>";
@@ -390,6 +403,7 @@
 				2E93A92F1E7A2560009CF2E1 /* AppDelegate.m in Sources */,
 				2E22584E1E81990B003ECEF8 /* UITableViewControllerCustimized.m in Sources */,
 				2E93A92C1E7A2560009CF2E1 /* main.m in Sources */,
+				2E4BF4A61E92F3E400B92BFB /* ICalServices.m in Sources */,
 				2E7158AE1E81BE9900BA0A16 /* UIViewFrameWorkModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
