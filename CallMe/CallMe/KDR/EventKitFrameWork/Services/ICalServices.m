@@ -163,8 +163,28 @@
 //         {
 //             if (!granted) // user user is ok with it
              {
+
+                     // We will only search the default calendar for our events
+                     NSArray *calendarArray = @[self.defaultCalendar];
+                 
+                     // Create the predicate
+                     NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:[NSDate date]
+                                                                                       endDate:[NSDate date]
+                                                                                     calendars:calendarArray];
+
+                 NSArray *t = [eventStore eventsMatchingPredicate:predicate];
+                 EKEvent *titleTest = t.firstObject;
+                 NSString *title = titleTest.title;
+//                 if(err)
+//                     NSLog(@"unable to save event to the calendar!: Error= %@", err);
+
+
+
+
+
+
                  EKEvent *event = [EKEvent eventWithEventStore:eventStore];
-                 event.title  = @"KIANDR";
+                 event.title  = @"CAllmeSaysHello";
                  event.allDay = YES;
 
                  //                 NSDateFormatter *dateFormat = [[UIApplicationSingleton sharedManager] aDateFormatter];
@@ -181,22 +201,10 @@
 
                  [event setCalendar:[eventStore defaultCalendarForNewEvents]];
                  NSError *err;
-
+                 
                  [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
 
-                     // We will only search the default calendar for our events
-                     NSArray *calendarArray = @[self.defaultCalendar];
-                 
-                     // Create the predicate
-                     NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:[NSDate date]
-                                                                                       endDate:[NSDate date]
-                                                                                     calendars:calendarArray];
 
-                 NSArray *t = [eventStore eventsMatchingPredicate:predicate];
-                 EKEvent *titleTest = t.firstObject;
-                 NSString *title = titleTest.title;
-//                 if(err)
-//                     NSLog(@"unable to save event to the calendar!: Error= %@", err);
 
 //             }
 //             else // if he does not allow
