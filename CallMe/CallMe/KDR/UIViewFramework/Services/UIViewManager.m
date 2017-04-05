@@ -26,6 +26,8 @@
     // build TableView
     [tempView addSubview:[self addUITableView:localUIViewFrameWorkModel]];
 
+    
+
     return tempView;
 }
 -(UIView*)  addUITableView:     (UIViewFrameWorkModel*)     localUIViewFrameWorkModel {

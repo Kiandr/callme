@@ -23,10 +23,9 @@
     self.eventStore = [[EKEventStore alloc] init];
     // Initialize the events list
     self.eventsList = [[NSMutableArray alloc] initWithCapacity:0];
-    // The Add button is initially disabled
-    //    self.addButton.enabled = NO;
+
     // Check whether we are authorized to access Calendar
-    //    [self checkEventStoreAccessForCalendar];
+    [self checkEventStoreAccessForCalendar];
 }
 
 // This method is called when the user selects an event in the table view. It configures the destination
@@ -41,13 +40,16 @@
     switch (status)
     {
             // Update our UI if the user has granted access to their Calendar
-        case EKAuthorizationStatusAuthorized: [self accessGrantedForCalendar];
+        case EKAuthorizationStatusAuthorized:
+            [self accessGrantedForCalendar];
             break;
             // Prompt the user for access to Calendar if there is no definitive answer
-        case EKAuthorizationStatusNotDetermined: [self requestCalendarAccess];
+        case EKAuthorizationStatusNotDetermined:
+//            [self requestCalendarAccess];
             break;
             // Display a message if the user has denied or restricted access to Calendar
         case EKAuthorizationStatusDenied:
+
         case EKAuthorizationStatusRestricted:
         {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Privacy Warning" message:@"Permission was not granted for Calendar"
@@ -57,7 +59,7 @@
                                                                     style:UIAlertActionStyleDefault
                                                                   handler:^(UIAlertAction * action) {}];
             [alert addAction:defaultAction];
-            //            [self presentViewController:alert animated:YES completion:nil];
+
         }
             break;
         default:
@@ -68,7 +70,9 @@
 
 // Prompt the user for access to their Calendar
 -(void)requestCalendarAccess {
+
     [self.eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error)
+
      {
          if (granted)
          {
@@ -79,8 +83,37 @@
                  [weakSelf accessGrantedForCalendar];
              });
          }
+         else {
+
+             NSLog(@"This is the status%@",granted);
+         }
      }];
-}
+
+
+    //Request the access to the Calendar
+    [_eventStore requestAccessToEntityType:EKEntityTypeEvent
+                               completion:^(BOOL granted,NSError* error){
+                                   //Access not granted-------------
+                                   if(!granted){
+
+                                       ICalServices * __weak weakSelf = self;
+                                                    // Let's ensure that our code will be executed from the main queue
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                        // The user has granted access to their Calendar; let's populate our UI with all events occuring in the next 24 hours.
+                                                        [weakSelf accessGrantedForCalendar];
+
+                                                    });
+                                   }
+                                   
+                                   //Access granted------------------
+
+
+     }];
+
+
+    // save to iphone calendar
+   }
+
 
 
 // This method is called when the user has granted permission to Calendar
@@ -90,7 +123,7 @@
     // Enable the Add button
     //    self.addButton.enabled = YES;
     // Fetch all events happening in the next 24 hours and put them into eventsList
-    self.eventsList = [self fetchEvents];
+//    self.eventsList = [self fetchEvents];
     // Update the UI with the above events
     //    [self.tableView reloadData];
 }
@@ -100,29 +133,91 @@
 
 // Fetch all events happening in the next 24 hours
 - (NSMutableArray *)fetchEvents {
-    NSDate *startDate = [NSDate date];
+//    NSDate *startDate = [NSDate date];
+//
+//    //Create the end date components
+//    NSDateComponents *tomorrowDateComponents = [[NSDateComponents alloc] init];
+//    tomorrowDateComponents.day = 1;
+//
+//    NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingComponents:tomorrowDateComponents
+//                                                                    toDate:startDate
+//                                                                   options:0];
+//    // We will only search the default calendar for our events
+//    NSArray *calendarArray = @[self.defaultCalendar];
+//
+//    // Create the predicate
+//    NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate
+//                                                                      endDate:endDate
+//                                                                    calendars:calendarArray];
+//
+//    // Fetch all events that match the predicate
+//    NSMutableArray *events = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate:predicate]];
 
-    //Create the end date components
-    NSDateComponents *tomorrowDateComponents = [[NSDateComponents alloc] init];
-    tomorrowDateComponents.day = 1;
 
-    NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingComponents:tomorrowDateComponents
-                                                                    toDate:startDate
-                                                                   options:0];
-    // We will only search the default calendar for our events
-    NSArray *calendarArray = @[self.defaultCalendar];
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    if([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)])
+    {
+        // iOS 6 and later
+        // This line asks user's permission to access his calendar
+//        [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error)
+//         {
+//             if (!granted) // user user is ok with it
+             {
+                 EKEvent *event = [EKEvent eventWithEventStore:eventStore];
+                 event.title  = @"KIANDR";
+                 event.allDay = YES;
 
-    // Create the predicate
-    NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate
-                                                                      endDate:endDate
-                                                                    calendars:calendarArray];
+                 //                 NSDateFormatter *dateFormat = [[UIApplicationSingleton sharedManager] aDateFormatter];
+                 //                 [dateFormat setDateFormat:@"MMM dd, yyyy hh:mm aaa"];
 
-    // Fetch all events that match the predicate
-    NSMutableArray *events = [NSMutableArray arrayWithArray:[self.eventStore eventsMatchingPredicate:predicate]];
 
-    return events;
+                 ////                 NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+                 //                 [components setHour:10];
+                 //                 NSDate *today10am = [calendar dateFromComponents:components];
+
+                 event.startDate = [NSDate date];
+
+                 event.endDate = [NSDate date];//put here if start and end dates are same
+
+                 [event setCalendar:[eventStore defaultCalendarForNewEvents]];
+                 NSError *err;
+
+                 [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+
+                     // We will only search the default calendar for our events
+                     NSArray *calendarArray = @[self.defaultCalendar];
+                 
+                     // Create the predicate
+                     NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:[NSDate date]
+                                                                                       endDate:[NSDate date]
+                                                                                     calendars:calendarArray];
+
+                 NSArray *t = [eventStore eventsMatchingPredicate:predicate];
+                 EKEvent *titleTest = t.firstObject;
+                 NSString *title = titleTest.title;
+//                 if(err)
+//                     NSLog(@"unable to save event to the calendar!: Error= %@", err);
+
+//             }
+//             else // if he does not allow
+//             {
+//                 [[[UIAlertView alloc]initWithTitle:nil message:@"issueKDR" delegate:nil cancelButtonTitle:NSLocalizedString(@"Pulled data from Calendar", nil)  otherButtonTitles: nil] show];
+//
+                 [[[UIAlertView alloc]initWithTitle:nil message:title delegate:nil cancelButtonTitle:NSLocalizedString(@"Pulled data from Calendar", nil)  otherButtonTitles: nil] show];
+                 //               return;
+//             }
+//         }];
+    }
+    }
+
+    return eventStore;
 }
 
+
+-(void) saveEvent:(EKEvent*) event
+{
+
+}
 
 #pragma mark Add a new event
 

@@ -20,20 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-     _uiManager= [[UIViewManager alloc]init];
-     [self.view addSubview:[_uiManager buildAViewAndLoadIntoMainViewParameteizedAndDatePicker]];
+    _uiManager= [[UIViewManager alloc]init];
+    [self.view addSubview:[_uiManager buildAViewAndLoadIntoMainViewParameteizedAndDatePicker]];
     _calServices = [[ICalServices alloc]init];
-    [_calServices checkEventStoreAccessForCalendar];
     [_calServices loadCalanderServices];
-//
-    [_calServices fetchEvents];
-    /*
-     
-     - (void) loadCalanderServices;
-     - (void) checkEventStoreAccessForCalendar;
-     - (NSMutableArray *)fetchEvents;
-     */
-
+//  [_calServices loadCalanderServices];
+  [_calServices fetchEvents];
 }
 
 
